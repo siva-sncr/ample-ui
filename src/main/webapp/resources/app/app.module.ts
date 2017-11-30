@@ -1,28 +1,30 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
-import { TranslateModule } from '@ngx-translate/core';
 
-import { AmpleComponent } from './ample.component';
-import { AmpleRouteModule } from './ample.route';
-import { LoginModule } from './modules/login/login.module';
 
-import { Config } from './provider/config.provider';
+import { AppComponent } from './app.component';
+
+// Additional Packages
+import { TreeModule } from 'angular-tree-component';
+
+// Additional Components
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { TreeviewComponent } from './treeview/treeview.component';
+
 
 @NgModule({
   declarations: [
-    AmpleComponent
+    HeaderComponent,
+    FooterComponent,
+    TreeviewComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    HttpModule,
-    TranslateModule.forRoot(),
-    
-    AmpleRouteModule,
-    LoginModule
+    TreeModule
   ],
-  providers: [Config],
-  bootstrap: [AmpleComponent]
+  providers: [],
+  bootstrap: [AppComponent]
 })
-
-export class AmpleModule { }
+export class AppModule { }
