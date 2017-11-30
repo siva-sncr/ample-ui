@@ -1,0 +1,135 @@
+<!-- <div class="navigation">
+    <div class="navbar navbar-inverse" role="navigation">
+        <div class="container padding-0">
+
+
+
+            <div class="">
+                <div class="header-holder">
+                    <div class="logo-wrapper">
+                        <div class="logo"></div>
+                    </div>
+                    <div class="menu-wrapper">
+                        <ul class="nav navbar-nav">
+                            <li *ngFor="let menu of menuItems">
+                              <a [routerLink]="[menu.path]">{{ menu.key | translate }}</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="settings-wrapper">
+						<ul class="nav navbar-nav navbar-text-white pull-right nav-settings">
+							<li class="dropdown" ng-keyup="keyPress($event)" dropdown is-close="!togglemenu" is-open="togglemenu">
+								<a href="javascript:" draggable="false" class="current-task" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
+									<span>{{ 'header.currentjobs' | translate }}</span>
+									<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+								</a>
+								<ul class="dropdown-menu" role="menu" dropdown is-close="!togglemenu" is-open="togglemenu">
+									<li>
+										<a href="javscript:"  ui-sref="base.configJobs">{{ 'header.currentjobs.config' | translate }}</a>
+									</li>
+									<li>
+										<a href="javscript:"  ui-sref="base.upgradeJobs">{{ 'header.currentjobs.upgrade' | translate }}</a>
+									</li>
+								</ul>
+                            </li>
+
+                            <li class="dropdown" ng-keyup="keyPress($event)" dropdown is-close="!togglemenu" is-open="togglemenu">
+								<a href="javascript:" draggable="false" data-toggle="dropdown" aria-haspopup="true" class="icon-button" role="button" aria-expanded="false">
+									<span class="icon-settings ion ion-ios-gear"></span>
+									<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+								</a>
+								<ul class="dropdown-menu dropdown-menu-right" dropdown is-close="!togglemenu" is-open="togglemenu" role="menu">
+									<li ng-if="!$root.permissionObj.emPermissions.UPDATE_SOFTWARE_PACKAGES">
+										<a class="a-disabled disabled" href="javascript:" ui-sref="base.systemAdmin" >{{ 'settings.menu.systemadmin' | translate }}</a>
+									</li>
+									<li ng-if="$root.permissionObj.emPermissions.UPDATE_SOFTWARE_PACKAGES">
+										<a href="javascript:" ui-sref="base.systemAdmin" >{{ 'settings.menu.systemadmin' | translate }}</a>
+									</li>
+
+									<li ng-if="!$root.permissionObj.emPermissions.UPDATE_CONFIG_PROP">
+										<a href="javascript:" class="a-disabled disabled menu-item" >{{ 'settings.menu.configureproperties' | translate }}</a>
+									</li>
+									<li ng-if="$root.permissionObj.emPermissions.UPDATE_CONFIG_PROP">
+										<a href="javascript:" ng-click="showConfigProperty(true,0)"  class="menu-item">{{ 'settings.menu.configureproperties' | translate }}</a>
+									</li>
+
+									<li ng-if="!$root.permissionObj.emPermissions.UPGRADE_SETTINGS">
+										<a href="javascript:" class="a-disabled disabled menu-item" >{{ 'settings.menu.upgradesttings' | translate }}</a>
+									</li>
+									<li ng-if="$root.permissionObj.emPermissions.UPGRADE_SETTINGS">
+										<a href="javascript:" ng-click="upgradeSettings()"  class="menu-item">{{ 'settings.menu.upgradesttings' | translate }}</a>
+									</li>
+
+				
+									<li ng-if="!$root.permissionObj.emPermissions.READ_DEVICE_CONFIG_PROFILE">
+										<a href="javascript:" class="a-disabled disabled menu-item" ui-sref="base.manageProfile" >{{ 'settings.menu.manageprofile' | translate }}</a>
+									</li>
+									<li ng-if="$root.permissionObj.emPermissions.READ_DEVICE_CONFIG_PROFILE">
+										<a href="javascript:" ui-sref="base.manageProfile"  class="menu-item">{{ 'settings.menu.manageprofile' | translate }}</a>
+									</li>
+
+									<li ng-if="!$root.permissionObj.amplePermissions.READ_PRINCIPAL">
+										<a href="javascript:" class="a-disabled disabled menu-item" ui-sref="base.userManagement" >{{ 'nav.main.usermanagement' | translate }}</a>
+									</li>
+									<li ng-if="$root.permissionObj.amplePermissions.READ_PRINCIPAL">
+										<a href="javascript:" ui-sref="base.userManagement"  class="menu-item">{{ 'nav.main.usermanagement' | translate }}</a>
+									</li>
+
+									<li ng-if="!$root.permissionObj.emPermissions.VIEW_AUDIT_TRAIL">
+										<a href="javascript:" class="a-disabled disabled menu-item" ui-sref="base.auditTrail" >{{ 'settings.menu.audittrail' | translate }}</a>
+									</li>
+									<li ng-if="$root.permissionObj.emPermissions.VIEW_AUDIT_TRAIL">
+										<a href="javascript:" ui-sref="base.auditTrail"  class="menu-item">{{ 'settings.menu.audittrail' | translate }}</a>
+									</li>
+
+									<li ng-if="!$root.permissionObj.emPermissions.NOTIFICATION_TEMPLATES">
+										<a href="javascript:" class="a-disabled disabled menu-item" ng-click="showNotificationTemplate(true,0)">{{ 'settings.menu.notificationtemplates' | translate }}</a>
+									</li>
+									<li ng-if="$root.permissionObj.emPermissions.NOTIFICATION_TEMPLATES">
+										<a href="javascript:" class="menu-item" ng-click="showNotificationTemplate(true,0)">{{ 'settings.menu.notificationtemplates' | translate }}</a>
+									</li>
+
+									<li>
+										<a href="javascript:" class="menu-item" ng-click="showProductInfo()">{{ 'settings.menu.aboutAmpleManage' | translate }}</a>
+									</li>
+									
+								</ul>
+                            </li>
+                            
+                            <li class="dropdown user-menu" ng-keyup="keyPress($event)" dropdown is-close="!togglemenu" is-open="togglemenu" ng-click="popupOpen()">
+								<a href="javascript:" draggable="false" class="icon-button" data-toggle="dropdown" class="icon-button" aria-haspopup="true"
+								 role="button" aria-expanded="false">
+									<span href="javascript:" class="ion ion-ios-person"></span>
+									<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+								</a>
+								<ul class="dropdown-menu dropdown-menu-right" role="menu" dropdown is-close="!togglemenu" is-open="togglemenu">
+									<li>
+										<a href="javascript:" class="menu-item" ng-click="showUpdateProfilePopup()" >{{ 'profile.menu.editprofile' | translate }}</a>
+									</li>
+									<li>
+										<a href="javascript:" class="menu-item" ng-click="showAlertSubscriptionsPopup()" >{{ 'profile.menu.slertsubscriptions' | translate }}</a>
+									</li>
+									<li>
+										<a href="javascript:" class="menu-item" ng-click="showResetPasswordPopup()" >{{ 'profile.menu.changepassword' | translate }}</a>
+									</li>
+									<li>
+										<a href="javascript:" ng-click="logout()">{{ 'profile.menu.logout' | translate }}</a>
+									</li>
+								</ul>
+							</li>
+
+                        </ul>
+                    </div>
+
+
+                  
+
+                </div>
+            </div>
+           
+
+        </div>
+        
+    </div>
+</div> -->
