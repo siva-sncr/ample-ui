@@ -1,0 +1,454 @@
+/* Main Navigation */
+.navigation{
+	float: left;
+	height: 45px;
+	min-height:45px;
+	min-width:1048px;
+	width:100%;
+	position: fixed;
+	border-color: transparent;
+	margin-bottom: 0px;
+	border-radius: 0px;
+	z-index: 1045;
+
+	@extend .settings;
+	.navbar-inverse {
+		background-color: $main-nav-bg;
+		border-color: $main-nav-bg;
+		margin-bottom: 0px;
+		min-height: 40px !important;
+		height: 45px !important;
+		border-radius: 0px !important;
+		/* position:fixed;
+		width:100%;
+		z-index:99; */
+
+		.header-holder{
+			height: 100%;
+
+
+			
+			.logo-wrapper{
+				height: 45px;
+				float:left;
+
+				.logo{
+					background-image:url("images/logo.png");
+					background-repeat: no-repeat;
+					background-size: 100% 100%;
+					background-position: -2px,0;
+					width: 108px;
+					height: 54%;
+					margin-left: 10px;
+					margin-top: 10px;
+				}
+			}
+
+			.menu-wrapper{
+				height: 45px;
+				left: 200px;
+				width: 60%;
+				float: left;
+				position: relative;
+
+				.nav.navbar-nav{
+					float: left;
+					margin: 0px auto;
+					position: relative;
+					font-size:13px;
+					left: 2%;
+				}
+
+				.navbar li a{
+					color: $main-nav-font;
+					background-color: $main-nav-bg;
+					line-height: 15px !important;
+
+					&:hover{
+						background-color: $main-nav-active-bg;
+						color: $main-nav-active-font !important;
+					}
+					&:focus{
+						outline: none !important;
+						-moz-outline-style: none !important;
+					}
+				}
+				.navbar-nav>li>a:focus{
+					outline: none !important;
+					-moz-outline-style: none !important;
+				}
+				.navbar-nav>li>a:hover{
+					color: $main-nav-active-font !important;
+					background-color: $main-nav-active-bg;
+				}
+				.navbar-nav>.active>a{
+					color: $main-nav-active-font !important;
+					background-color: $main-nav-active-bg;
+/*
+					&:after{
+						border-left: 6px solid transparent;
+						border-right: 6px solid transparent;
+						border-bottom: 6px solid $main-nav-bg-triangle;
+						border-top: none;
+						height: 0;
+						width: 0;
+						bottom: -1px;;
+						content: "";
+						left: 50%;
+						margin-left: -5px;
+						position: absolute;
+					}
+*/
+				}
+/*
+				.navbar-nav > .active > a.no-submenu:after {
+					border:none;
+				}
+*/
+			}
+
+			.settings-wrapper{
+				margin-right: -10px;
+			}
+		}		
+	}
+
+
+
+.navbar-nav>li>a{
+	line-height:14px !important;
+	font-size: 15px;
+	font-weight: bold;
+	color: $main-nav-font;
+}
+
+@grid-float-breakpoint:    992px;
+
+	
+	
+	/*   Header Right align -start  */
+	.settings{
+		float: right;
+		text-align: right;
+		margin-top: 12px;
+		cursor:pointer;
+
+		.current-task{
+			display:block;
+			/*color:$buttontextcolor;*/
+			width: 100px;
+			height: 44px;
+			line-height: 44px;
+			font-size:13px;
+			position: absolute;
+			top: 0;
+			right: 134px;
+			text-align: center;
+		}
+		.more-btn{
+			display:block;
+			color:$settings-more-btn-color;
+			padding:4px;
+			height: 44px;
+			line-height: 44px;
+			font-size:10px;
+			width:30px;
+			position: absolute;
+			top: 0;
+			right: 130px;
+		}
+		.icon-settings{
+			display:block;
+			color:$settings-more-btn-color;
+			font-size: 28px;
+			width:37px;
+			height: 44px;
+			line-height: 44px;
+			padding-right: 30px;
+			position: absolute;
+			top: 0;
+			right: 80px;
+		}
+		.settings-down-arrow{
+			display:block;
+			color:$settings-more-btn-color;
+			padding:4px;
+			height: 44px;
+			line-height: 44px;
+			font-size:10px;
+			width:30px;
+			position: absolute;
+			top: 0;
+			right: 0px;
+		}
+		.logged-user{
+			display:block;
+			color:$settings-more-btn-color;
+			font-size: 28px;
+			width:40px;
+			height: 44px;
+			line-height: 44px;
+			padding-right: 15px;
+			position: absolute;
+			top: 0;
+			right: 30px;
+		}
+		.person-down-arrow{
+			display:block;
+			color:$settings-more-btn-color;
+			padding:4px;
+			height: 44px;
+			line-height: 44px;
+			font-size:10px;
+			width:30px;
+			position: absolute;
+			top: 0;
+			right: 0px;
+		}
+
+		.settings-option{
+			width: 140px;
+			float: left;
+			background-color: $settings-more-opt-bg;
+			padding:5px 0px;
+			font-family: $fontfamily;
+			position: relative;
+			right: 90px;
+			z-index: 100;
+
+			a{
+				margin:0px auto;
+				display:block;
+				text-align:right;
+				padding:5px;
+				color:$settings-more-txt-color;
+				font-size:11px;
+				padding-left:10px;
+				padding-right:10px;
+				text-decoration: none;
+				cursor: pointer;
+				line-height:15px;
+
+				&:hover{
+					background:$settings-more-opt-active-bg;
+				}
+			}
+			.profile-btn{
+
+			}
+
+			.logout-btn{
+
+			}
+		}
+
+		.more-option{
+			width: 100px;
+			float: left;
+			background-color: $settings-more-opt-bg;
+			padding:5px 0px;
+			font-family: $fontfamily;
+			position: relative;
+			right: 60px;
+			z-index: 100;
+
+			a{
+				margin:0px auto;
+				display:block;
+				text-align:right;
+				padding:5px;
+				color:$settings-more-txt-color;
+				padding-left:10px;
+				padding-right:10px;
+				font-size:11px;
+				text-decoration: none;
+				cursor: pointer;
+				line-height:15px;
+
+				&:hover{
+					background:$settings-more-opt-active-bg;
+				}
+			}
+			.profile-btn{
+
+			}
+
+			.logout-btn{
+
+			}
+		}
+	}
+	/*   Header Right align -end  */
+}
+
+/* Sub Navigation */
+.sub-navigation{
+	width:100%;
+	min-width:1024px;
+	float: left;
+	height:26px;
+	min-height:26px;
+	position: fixed;
+	background: $sub-nav-bg;
+	border-color: transparent;
+	margin-bottom: 0px;
+	border-radius: 0px;
+	z-index: 1043;
+	margin-top:35px;
+
+	.row{
+		height: 26px;
+		.col-sm-2, col-xs-2{
+			height: 26px;
+		}
+		.sub-menu-wrapper{
+			height: 26px;
+			float: left;
+			position: relative;
+
+			.navbar-nav{
+				float: none;
+				font-size:13px;
+				margin: 0px auto;
+
+				&.device-management-subnav{
+					margin-left:418px;
+				}
+				
+				&.line-monitoring-subnav{
+					margin-left: 276px;
+				}
+				&.ample-reports-subnav{
+					margin-left: 326px;
+				}
+			}
+
+			.navbar-nav li {
+				margin-right: 4px;
+
+				a {
+					color: $sub-nav-font;
+					font-size: 13px;
+					font-weight: bold;
+					background-color: $sub-nav-bg;
+					line-height:5px;
+					padding: 9px 10px;
+
+					&:focus{
+						outline: none !important;
+						-moz-outline-style: none !important;
+					}
+				}
+
+				&:hover, &.sub-active {
+					box-shadow: 0px 0px 3px 2px $sub-nav-active-bg;
+				}
+			}
+/*
+			.navbar-nav>.sub-active>a{
+				color: $sub-nav-font;
+				background-color: $sub-nav-active-bg;
+
+				&:hover{
+					color: $sub-nav-font;
+					background-color: $sub-nav-active-bg;
+				}
+
+				&:after{
+					border-left: 5px solid transparent;
+					border-right: 5px solid transparent;
+					border-bottom: 5px solid $sub-nav-bg-triangle;
+					border-top: none;
+					height: 0;
+					width: 0;
+					bottom: 0;
+					content: "";
+					left: 50%;
+					margin-left: -5px;
+					position: absolute;
+				}
+			}
+
+			.job-status-btn{
+				float: right;
+				margin-top: 9px;
+				display:none;
+			}
+*/
+		}
+	}
+}
+
+/* Main Navigation Overrides - needs to be merged with above styles block */
+.navigation {
+	min-height: 36px;
+	height: 36px;
+
+	.navbar-inverse {
+		min-height: 36px !important;
+		height: 36px !important;
+		border: none;
+
+		.header-holder {
+			.logo-wrapper {
+				height: 36px;
+
+				.logo {
+					background-position: 0 0;
+					width: 130px;
+					height: 28px;
+					margin-top: 2px;
+					margin-left:0;
+				}
+			}
+			.menu-wrapper {
+				height: 36px;
+				left: 0;
+
+				.navbar-nav > li > a {
+					padding: 11px 15px;
+				}
+			}
+
+			ul.navbar-nav.nav-settings {
+				> li > a {
+					padding: 9px 10px 11px;
+					color: $main-nav-font;
+
+					&.current-task {
+						.glyphicon {
+							top: 2px;
+						}
+					}
+					&.icon-button {
+						padding: 4px 10px;
+
+						span.ion {
+							font-size: 28px;
+						}
+						.glyphicon {
+							top: -2px;
+						}
+					}
+				}
+				ul.dropdown-menu {
+					background-color: $main-nav-bg;
+					border-radius: 0;
+					border: none;
+
+					li {
+						a {
+							color: $main-nav-font;
+							font-size: 13px;
+							font-family: "Open Sans", sans-serif;
+						}
+						&:hover a, &.active a {
+							background-color: $main-nav-active-bg !important;
+							color:$main-nav-active-font;
+						}
+					}
+				}
+			}
+		}
+	}
+}
