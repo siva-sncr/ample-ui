@@ -1,0 +1,417 @@
+#NOTE: Make sure all <TAB> chars are replaced with 4 <SPACES> 
+
+name: Ample Manage
+
+#default language for the application
+language: en_US
+
+contextPath: em/rest/
+
+#dashboard mapview properties
+initBufferMagnifier: 4
+initMinLat: -180
+initMaxLat: 180
+initMinLon: -180
+initMaxLon: 180
+renderDelay: 500
+mapOddZoomLevel: 3
+mapMinZoomLevel: 3
+mapZoomLevel: 3
+mapFetchInterval: 1000
+latBuffer: 0
+lonBuffer: 0
+# 1 mins to 60 mins
+waveformTimeScaleInterval: 60
+
+#rest api configuration 
+restapi:
+    host: 172.20.3.66
+    #port: 8080
+    protocol: https
+    contextPath: em/rest/
+    #Make the application offline and enable mock api requests (Development Purpose Only)
+    offline: false
+    #note: unit will be either celsius or fahrenheit
+    tempUnit: F
+    
+api:
+    common:
+            data:
+                faultsType: getallfaulttypes
+    login:
+        customerInfo: orgDetails
+        ipInfo: ample/rest/usermanagement/user/ip
+        checkSession: ample/j_spring_security_check
+        clearSession: em/em/j_spring_security_logout
+        productInfo: build/details
+        resetpassword: ample/rest/usermanagement/changepassword
+        userinfo: ample/rest/usermanagement/profile/details
+        timezonelist: ample/rest/usermanagement/timezones/list
+
+        data:
+            updateuserinfo: ample/rest/usermanagement/user/${PRINCIPALID}/edit
+            resetpasswordemail: ample/rest/usermanagement/sendemail?email=${EMAIL}
+            resetpasswordtoken: ample/rest/usermanagement/tokenvalidate?id=${PRINCIPALID}&token=${TOKEN}
+            resetpasswordinfo: ample/rest/usermanagement/${PRINCIPALID}/resetpassword
+
+    dashboard:
+        data:
+            feederfaults: ${ORGID}/faultevents/feederFaults/top?nodeType=Feeders&faultState=${STATETYPE}&faultType=${FAULTTYPE}&range=${RANGE}&timezone=${TIMEZONE}
+            activefaults: ${ORGID}/dashboard/activeFaults?range=${RANGE}
+            feederfaultsexport: ${ORGID}/faultevents/feederFaults/top/export/excel?nodeType=Feeders&faultState=${STATETYPE}&faultType=${FAULTTYPE}&range=${RANGE}&timezone=${TIMEZONE}
+            activefaultsexport: ${ORGID}/dashboard/activeFaults/export/excel?range=${RANGE}&timezone=${TIMEZONE}
+            devicesummary: ${ORGID}/dashboard/deviceSummary
+            faultsummary: ${ORGID}/faultevents/dashboard/summary?range=${RANGE}&timezone=${TIMEZONE}
+            mapviewrange: ${ORGID}/dashboard/mapviewclusterrange?lat_min=${LATMIN}&lat_max=${LATMAX}&lon_min=${LONMIN}&lon_max=${LONMAX}&zoom_level=${ZOOM}
+            mapviewpreview: ${ORGID}/dashboard/mapview/preview
+            mapview: ${ORGID}/dashboard/mapview
+            mapviewcenter: ${ORGID}/dashboard/mediumlonandlat
+            rolesandpermissions: rolesmanagement/role/list
+    map:
+        mapviewcenter: ${ORGID}/dashboard/mediumlonandlat
+        activefaultscount: ${ORGID}/dashboard/map/activeFaultsCount
+        activefaults: ${ORGID}/dashboard/map/activeFaults?range
+        ROOTNODE:
+            data: ${ROOTNODE}/latLngBounds
+        REGION:
+            data: ${ROOTNODE}/regions/${REGION}/latLngBounds
+        SUBSTATION:
+            data: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/latLngBounds
+        FEEDER:
+            data: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders/${FEEDER}/latLngBounds
+        SITE:
+            data: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders/${FEEDER}/site/${SITE}/latLngBounds
+    groupmanagement:
+        CUSTOMERNODE:
+            nodes: orgDetails
+        
+        ROOTNODE:
+            nodes: $${ROOTNODE}/regions
+            details: ${ROOTNODE}/details
+            addNode: ${ROOTNODE}/regions/add
+            editNode: renamerootnode
+            referenceSensors: ${ROOTNODE}/referenceSensors
+        
+        REGION:
+            nodes: ${ROOTNODE}/regions/${REGION}/substations
+            details: ${ROOTNODE}/regions/${REGION}/details
+            addNode: ${ROOTNODE}/regions/${REGION}/substations/add
+            editNode: ${ROOTNODE}/regions/${REGION}/update
+            deleteNode: ${ROOTNODE}/regions/${REGION}/delete
+            referenceSensors: ${ROOTNODE}/regions/${REGION}/referenceSensors
+            enablegps: ${ROOTNODE}/regions/${REGION}/enableDeviceGPS
+        
+        SUBSTATION:
+            nodes: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders
+            details: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/details
+            addNode: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders/add
+            editNode: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/update
+            deleteNode: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/delete
+            referenceSensors: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/referenceSensors
+            enablegps: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/enableDeviceGPS
+        
+        FEEDER:
+            nodes: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders/${FEEDER}/sites
+            details: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders/${FEEDER}/details
+            addNode: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders/${FEEDER}/sites/add
+            editNode: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders/${FEEDER}/update
+            deleteNode: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders/${FEEDER}/delete
+            enablegps: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders/${FEEDER}/enableDeviceGPS
+          
+        SITE:
+            addNode: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders/${FEEDER}/sites/${SITE}/device/add
+            editDevice: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders/${FEEDER}/sites/${SITE}/device/{DEVICEID}/update
+            details: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders/${FEEDER}/sites/${SITE}/details
+            editNode: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders/${FEEDER}/sites/${SITE}/update
+            deleteNode: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders/${FEEDER}/sites/${SITE}/delete
+        
+        CUSTOM_GROUPS:
+            nodes: customgroups
+            addNode: customgroups/add
+            deleteNode: customgroups/${CUSTOM_GROUPS}/delete
+            editNode: customgroups/${CUSTOM_GROUPS}/update
+            reports: ${ORGID}/customgroupsreport
+            exportData: ${ORGID}/customgroupsreport/export?timezone=${TIMEZONE}
+            
+        UNASSIGNED_DEVICES:
+            nodes: ${ROOTNODE}/unassigneddevices
+
+        SEARCH:
+            nodes: ${ROOTNODE}/node/search
+            nodepath: ${ROOTNODE}/node/search/select
+
+        data:
+            commserverlist: ${ORGID}/commserver/list
+            productnamelist: productname/list
+            platformlist: platform/list?productName=${PRODUCTNAME}
+            softwareversionlist: swversion/list?productName=${PRODUCTNAME}&platform=${PLATFORM}
+            selectedregions: alertsubscriptions/${ORGID}/regions
+            selectedsubstations: alertsubscriptions/region/${REGION}/substations
+            loadnotificationdata: alertsubscriptions/${ORGID}/getSubscribedNotification
+            updatenotificationdata: alertsubscriptions/addorupdate
+            groupnamelist: ${ORGID}/sgw/${SERVERID}/networkgroups/getnetworkgroupnamesbysgwid
+            devicestatelist: getallDeviceStates
+
+    devicemanagement:
+        ROOTNODE:
+            data: ${ROOTNODE}/devices?pageNo=${PAGENO}&pageSize=${PAGESIZE}
+            exportData: ${ROOTNODE}/devices/export/${FORMAT}?timezone=${TIMEZONE}
+        
+        REGION:
+            data: ${ROOTNODE}/regions/${REGION}/devices?pageNo=${PAGENO}&pageSize=${PAGESIZE}
+            exportData: ${ROOTNODE}/regions/${REGION}/devices/export/${FORMAT}?timezone=${TIMEZONE}
+
+        SUBSTATION:
+            data: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/devices?pageNo=${PAGENO}&pageSize=${PAGESIZE}
+            exportData: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/devices/export/${FORMAT}?timezone=${TIMEZONE}
+
+        FEEDER:
+            data: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders/${FEEDER}/devices?pageNo=${PAGENO}&pageSize=${PAGESIZE}
+            exportData: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders/${FEEDER}/devices/export/${FORMAT}?timezone=${TIMEZONE}
+
+        SITE:
+            data: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders/${FEEDER}/sites/${SITE}/devices?pageNo=${PAGENO}&pageSize=${PAGESIZE}
+            exportData: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders/${FEEDER}/sites/${SITE}/devices/export/${FORMAT}?timezone=${TIMEZONE}
+
+        DEVICE:
+            detail: devices/${DEVICEID}/details
+            delete: devices/delete
+            unregister: devices/unregister
+            register: devices/register?selectedCommServer=${SERVERNAME}&selectedNetworkGrpName=${GROUPNAME}
+            commserverlist: ${ORGID}/commserver/list
+            grouplist: customgroups
+            addtogroup: customgroups/${CUSTOM_GROUP_NODE}/devices/add
+            pingstatus: pingstatus/${DEVICEID}
+            initiateping: ping/${DEVICEID}
+            configdata: ${ORGID}/configuration/devices?pageNo=${PAGENO}&pageSize=${PAGESIZE}
+            upgradedata: ${ORGID}/upgrade/devices?pageNo=${PAGENO}&pageSize=${PAGESIZE}
+            inactivedata: ${ORGID}/inactivedevices?pageNo=${PAGENO}&pageSize=${PAGESIZE}
+            flashstatus: flash/${DEVICEID}/history
+            initiateflash: flash/${DEVICEID}
+            getfilters: devices/filters/${MODULE}
+
+        UNASSIGNED_DEVICES:
+            data: ${ROOTNODE}/unassigneddevices
+
+        CUSTOM_GROUPS:
+            data: customgroups/${CUSTOMGROUPID}/devices
+
+        CUSTOM_GROUP_NODE:
+            data: customgroups/${CUSTOM_GROUP_NODE}/devices
+
+    logi:
+        FEEDER:
+            data: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders/${FEEDER}/logI?starttimestamp=${STARTDATE}&endtimestamp=${ENDDATE}&timezone=${TIMEZONE}
+            exportData: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders/${FEEDER}/logI/export/${FORMAT}?starttimestamp=${STARTDATE}&endtimestamp=${ENDDATE}&timezone=${TIMEZONE}
+
+        SITE:
+            data: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders/${FEEDER}/sites/${SITE}/logI?starttimestamp=${STARTDATE}&endtimestamp=${ENDDATE}&timezone=${TIMEZONE}
+            exportData: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders/${FEEDER}/sites/${SITE}/logI/export/${FORMAT}?starttimestamp=${STARTDATE}&endtimestamp=${ENDDATE}&timezone=${TIMEZONE}
+
+        RANGE:
+            #graph data supports query string params range=1|7|30|365
+            data: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders/${FEEDER}/sites/${SITE}/logI?range=${RANGE}
+    
+    dnp3:
+        FEEDER:
+            history: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders/${FEEDER}/history?startTime={START_TIME}&endTime={END_TIME}&timezone=${TIMEZONE}&pageNo=${PAGENO}&pageSize=${PAGESIZE}
+            exportData: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders/${FEEDER}/history/export/${FORMAT}?startTime={START_TIME}&endTime={END_TIME}&timezone=${TIMEZONE}
+        
+        SITE:
+            history: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders/${FEEDER}/sites/${SITE}/history?startTime={START_TIME}&endTime={END_TIME}&timezone=${TIMEZONE}&pageNo=${PAGENO}&pageSize=${PAGESIZE}
+            drawgraph: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders/${FEEDER}/sites/${SITE}/drawhistorygraph?range={RANGE}&timezone=${TIMEZONE}
+            exportData: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders/${FEEDER}/sites/${SITE}/history/export/${FORMAT}?startTime={START_TIME}&endTime={END_TIME}&timezone=${TIMEZONE}
+    
+    faultsevents:
+        REGION:
+            data: ${ROOTNODE}/region/${REGION}/feederfaultevents?starttimestamp=${STARTDATE}&endtimestamp=${ENDDATE}&timezone=${TIMEZONE}
+            exportData: ${ROOTNODE}/region/${REGION}/feederfaultevents/export/${FORMAT}?starttimestamp=${STARTDATE}&endtimestamp=${ENDDATE}&timezone=${TIMEZONE}
+        SUBSTATION:
+            data: ${ROOTNODE}/region/${REGION}/substation/${SUBSTATION}/feederfaultevents?starttimestamp=${STARTDATE}&endtimestamp=${ENDDATE}&timezone=${TIMEZONE}
+            exportData: ${ROOTNODE}/region/${REGION}/substation/${SUBSTATION}/feederfaultevents/export/${FORMAT}?starttimestamp=${STARTDATE}&endtimestamp=${ENDDATE}&timezone=${TIMEZONE}
+
+        FEEDER:
+            data: ${ROOTNODE}/region/${REGION}/substation/${SUBSTATION}/feeder/${FEEDER}/feederfaultevents?starttimestamp=${STARTDATE}&endtimestamp=${ENDDATE}&timezone=${TIMEZONE}
+            exportData: ${ROOTNODE}/region/${REGION}/substation/${SUBSTATION}/feeder/${FEEDER}/feederfaultevents/export/${FORMAT}?starttimestamp=${STARTDATE}&endtimestamp=${ENDDATE}&timezone=${TIMEZONE}
+        
+        SITE:
+            data: ${ROOTNODE}/region/${REGION}/substation/${SUBSTATION}/feeder/${FEEDER}/site/${SITE}/feederfaultevents?starttimestamp=${STARTDATE}&endtimestamp=${ENDDATE}&timezone=${TIMEZONE}
+            exportData: ${ROOTNODE}/region/${REGION}/substation/${SUBSTATION}/feeder/${FEEDER}/site/${SITE}/feederfaultevents/export/${FORMAT}?starttimestamp=${STARTDATE}&endtimestamp=${ENDDATE}&timezone=${TIMEZONE}
+
+        CUSTOM_GROUPS:
+            data: ${ORGID}/customgroupsreport?timezone=${TIMEZONE}&duration=${DURATION}&reportType=${REPORT_TYPE}
+            exportData: ${ORGID}/customgroupsreport/export/${FORMAT}?timezone=${TIMEZONE}&duration=${DURATION}&reportType=${REPORT_TYPE}
+        COMMON:
+            data: ${ORGID}/faultevents/detectors
+            events: ${ORGID}/feederfaultid/{feederFaultId}/feederfaultevents
+            waveform: ${ORGID}/feederfaulteventsbyfaultids/{CFCIFAULTIDS}/waveform?timezone=${TIMEZONE}
+    
+    waveform:
+        SITE:
+            data: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders/${FEEDER}/sites/${SITE}/waveformfaultevents?timestamp=${TIMESTAMP}&endtimestamp=${ENDTIMESTAMP}&timezone=${TIMEZONE}
+            exportData: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders/${FEEDER}/sites/${SITE}/waveform/export/${FORMAT}?timestamp=${TIMESTAMP}&endtimestamp=${ENDTIMESTAMP}&timezone=${TIMEZONE}
+        FEEDER:
+            data: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders/${FEEDER}/waveformfaultevents?timestamp=${TIMESTAMP}&endtimestamp=${ENDTIMESTAMP}&timezone=${TIMEZONE}
+            exportData: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders/${FEEDER}/waveform/export/${FORMAT}?timestamp=${TIMESTAMP}&endtimestamp=${ENDTIMESTAMP}&timezone=${TIMEZONE}
+        EVENT:
+            detail: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders/${FEEDER}/sites/${SITE}/events/${EVENT}/waveform/details
+            download: regions/{REGION}/substations/{SUBSTATION}/feeders/{FEEDER}/sites/{SITE}/events/{EVENT}/waveform/download
+        data:
+            getcapture: ${ORGID}/waveformfaultevents/${CFCIEVENTID}/waveformcapture?timezone=${TIMEZONE}
+
+    systemadmin:
+        data:
+            firmwarefilehistory: uploadfirmware?uploadtype=FIRMWARE
+            importfirmwaredata: uploadfirmware
+            masterfilehistory: uploadmastertracker?uploadtype=MASTER_TRACKER
+            importmasterdata: uploadmastertracker
+            configureinfo: getcomproperties
+            updateconfigure: updatecomproperties
+            commserverdata: ${ORGID}/commservers
+            commserverdetails: ${ORGID}/commservers/${SERVERID}
+            sgwdetails: ${ORGID}/sgw/${SERVERID}
+            updatecommserverdetails: ${ORGID}/commservers/${SERVERID}/update
+            updatesgwdetails: ${ORGID}/sgw/${SERVERID}/update
+            pulishcommserver: ${ORGID}/commservers/${SERVERID}/export
+            deletecommserver:  ${ORGID}/commservers/delete
+            getnetworkgroups: ${ORGID}/sgw/${SERVERID}/networkgroups
+            getdefaultconfig: ${ORGID}/sgw/${SERVERID}/networkgroups/getdefaultconfig
+            addgroup: ${ORGID}/sgw/${SERVERID}/networkgroups/add
+            editgroup: ${ORGID}/sgw/${SERVERID}/networkgroups/edit
+            deletegroup: ${ORGID}/sgw/${SERVERID}/networkgroups/${GROUPNAME}/delete
+
+    usermanagement:
+        data:
+            roles: ample/rest/usermanagement/roles/list
+            timezones: ample/rest/usermanagement/timezones/list
+            list: ample/rest/usermanagement/users/list
+            create: ample/rest/usermanagement/user/add
+            update: ample/rest/usermanagement/user/${principalId}/edit
+            delete: ample/rest/usermanagement/user/delete
+            removeemsession: em/em/removeSession
+            userState: ample/rest/usermanagement/user/${principalId}/enableordisable/${action}
+            resetpassword: ample/rest/usermanagement/user/${principalId}/forceresetpassword
+
+    rolesmanagement:
+        data:
+            list: rolesmanagement/roles/list
+            create: rolesmanagement/role/create
+            update: rolesmanagement/role/${roleId}/edit
+            delete: rolesmanagement/role/delete
+
+    profilemanagement:
+        data:
+            list: configuration/profile/list
+            detail: configuration/profile/${id}
+            default: configuration/profile/default
+            applytoelement: configuration/profile/${id}/applytoelements
+            applytosubstation: configuration/profile/${id}/applytosubstation
+            applytofeeder: configuration/profile/${id}/applytofeeder
+            applytosite: configuration/profile/${id}/applytosite
+            saveAs: configuration/profile/create
+            save: configuration/profile/${id}/update
+            delete: configuration/profile/${id}/delete
+            
+    currentjobs:
+        config:
+            joblist: ${ORGID}/configuration/jobs
+            jobDetails: ${ORGID}/configuration/jobs/details?configJobName=${JOBNAME}
+            deviceStatus: ${ORGID}/configuration/jobs/${JOBNAME}/devices/${DEVICEID}/details
+            retry: configuration/retry?deviceId=${DEVICEID}
+            retryAll: configuration/retryall
+        upgrade:
+            joblist: upgrade/softwares/jobs
+            jobDetails: upgrade/softwares/jobs/${JOBNAME}/devices
+            deviceStatus: ${ORGID}/configuration/jobs/${JOBNAME}/devices/${DEVICEID}/details
+            retry: upgrade/softwares/jobs/${JOBNAME}/devices/retrymultiple
+            abort: upgrade/softwares/jobs/${JOBNAME}/devices/abortmultiple
+            retryAll: upgrade/softwares/jobs/${JOBNAME}/devices/retrymultiple
+            otapstatus: upgrade/status/progress?serialNumber=${SERIALNUMBER}
+
+    upgrade:
+        data:
+            getTargetedSoftware: upgrade/targetedSoftwares
+            startUpgrade: upgrade/softwares/${SOFTWAREVERSION}/start?datetime=${DATETIME}&timezone=${TIMEZONE}
+            getupgradesettings: upgrade/settings?timezone=${TIMEZONE}
+            saveupgradesettings: upgrade/settings/save?timezone=${TIMEZONE}
+
+    autophaseid:
+        ROOTNODE:
+            data: ${ROOTNODE}/autoPhaseID
+
+        REGION:
+            data: ${ROOTNODE}/regions/${REGION}/autoPhaseID
+            exportData: ${ROOTNODE}/regions/${REGION}/autoPhaseID/export/${FORMAT}?timezone=${TIMEZONE}
+
+        SUBSTATION:
+            data: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/autoPhaseID
+            exportData: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/autoPhaseID/export/${FORMAT}?timezone=${TIMEZONE}
+
+        FEEDER:
+            data: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders/${FEEDER}/autoPhaseID
+            exportData: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders/${FEEDER}/autoPhaseID/export/${FORMAT}?timezone=${TIMEZONE}
+
+        SITE:
+            data: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders/${FEEDER}/sites/${SITE}/autoPhaseID
+            exportData: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders/${FEEDER}/sites/${SITE}/autoPhaseID/export/${FORMAT}?timezone=${TIMEZONE}
+
+    offlinedevices:
+        ROOTNODE:
+            data: ${ROOTNODE}/inactivedevices
+            exportData: ${ROOTNODE}/inactivedevices/export/${FORMAT}?timezone=${TIMEZONE}
+        
+        REGION:
+            data: ${ROOTNODE}/regions/${REGION}/inactivedevices
+            exportData: ${ROOTNODE}/regions/${REGION}/inactivedevices/export/${FORMAT}?timezone=${TIMEZONE}
+
+        SUBSTATION:
+            data: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/inactivedevices
+            exportData: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/inactivedevices/export/${FORMAT}?timezone=${TIMEZONE}
+
+        FEEDER:
+            data: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders/${FEEDER}/inactivedevices
+            exportData: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders/${FEEDER}/inactivedevices/export/${FORMAT}?timezone=${TIMEZONE}
+
+        SITE:
+            data: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders/${FEEDER}/sites/${SITE}/inactivedevices
+            exportData: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders/${FEEDER}/sites/${SITE}/inactivedevices/export/${FORMAT}?timezone=${TIMEZONE}
+
+        DEVICE:
+            detail: devices/${DEVICEID}/details
+
+    disturbances:
+        REGION:
+            countersdata: ${ROOTNODE}/regions/${REGION}/disturbances?starttimestamp=${STARTDATE}&endtimestamp=${ENDDATE}&interval=${INTERVAL}&timezone=${TIMEZONE}
+            disturbancedata: ${ROOTNODE}/regions/${REGION}/disturbanceLog?starttimestamp=${STARTDATE}&endtimestamp=${ENDDATE}&timezone=${TIMEZONE}
+            exportData: ${ROOTNODE}/regions/${REGION}/disturbances/export/${FORMAT}?starttimestamp=${STARTDATE}&endtimestamp=${ENDDATE}&timezone=${TIMEZONE}&interval=${INTERVAL}
+            exportdisturbancedata: ${ROOTNODE}/regions/${REGION}/disturbanceLog/export/${FORMAT}?starttimestamp=${STARTDATE}&endtimestamp=${ENDDATE}&timezone=${TIMEZONE}
+
+        SUBSTATION:
+            countersdata: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/disturbances?starttimestamp=${STARTDATE}&endtimestamp=${ENDDATE}&interval=${INTERVAL}&timezone=${TIMEZONE}
+            disturbancedata: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/disturbanceLog?starttimestamp=${STARTDATE}&endtimestamp=${ENDDATE}&timezone=${TIMEZONE}
+            exportData: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/disturbances/export/${FORMAT}?starttimestamp=${STARTDATE}&endtimestamp=${ENDDATE}&timezone=${TIMEZONE}&interval=${INTERVAL}
+            exportdisturbancedata: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/disturbanceLog/export/${FORMAT}?starttimestamp=${STARTDATE}&endtimestamp=${ENDDATE}&timezone=${TIMEZONE}
+
+        FEEDER:
+            countersdata: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders/${FEEDER}/disturbances?starttimestamp=${STARTDATE}&endtimestamp=${ENDDATE}&interval=${INTERVAL}&timezone=${TIMEZONE}
+            disturbancedata: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders/${FEEDER}/disturbanceLog?starttimestamp=${STARTDATE}&endtimestamp=${ENDDATE}&timezone=${TIMEZONE}
+            exportData: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders/${FEEDER}/disturbances/export/${FORMAT}?starttimestamp=${STARTDATE}&endtimestamp=${ENDDATE}&timezone=${TIMEZONE}&interval=${INTERVAL}
+            exportdisturbancedata: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders/${FEEDER}/disturbanceLog/export/${FORMAT}?starttimestamp=${STARTDATE}&endtimestamp=${ENDDATE}&timezone=${TIMEZONE}
+        
+        SITE:
+            countersdata: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders/${FEEDER}/sites/${SITE}/disturbances?starttimestamp=${STARTDATE}&endtimestamp=${ENDDATE}&interval=${INTERVAL}&timezone=${TIMEZONE}
+            disturbancedata: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders/${FEEDER}/sites/${SITE}/disturbanceLog?starttimestamp=${STARTDATE}&endtimestamp=${ENDDATE}&timezone=${TIMEZONE}
+            exportData: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders/${FEEDER}/sites/${SITE}/disturbances/export/${FORMAT}?starttimestamp=${STARTDATE}&endtimestamp=${ENDDATE}&timezone=${TIMEZONE}&interval=${INTERVAL}
+            exportdisturbancedata: ${ROOTNODE}/regions/${REGION}/substations/${SUBSTATION}/feeders/${FEEDER}/sites/${SITE}/disturbanceLog/export/${FORMAT}?starttimestamp=${STARTDATE}&endtimestamp=${ENDDATE}&timezone=${TIMEZONE}
+
+    audittrail:
+         data:
+             getdata: auditTrail?pageNo=${PAGENO}&pageSize=${PAGESIZE}
+             postlogin: auditTrail/logPostLogin?ipAddress=${IPADDRESS}
+             prelogout: auditTrail/logPreLogout 
+    notificationtemplate:
+        data:
+            loadcategories: notification/getAllNotificationCategory
+            loadtemplates: notification/getAllNotificationTemplateByCategory?notificationCategory=${CATEGORY}
+            storetemplate: notification/saveorupdateNotificationTemplate
+            deleteNotificationTemplates: /notification/deleteNotificationTemplate
