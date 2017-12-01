@@ -1,0 +1,382 @@
+/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+// Define theme colors
+$main-nav-bg: #333333;
+$main-nav-font: #D98C15;
+$main-nav-active-bg: $main-nav-font;
+$main-nav-active-font: $main-nav-bg;
+
+$sub-nav-bg: #E5E5E5;
+$sub-nav-font: $main-nav-bg;
+$sub-nav-active-bg: #A8A6A6;
+
+$clr-orange: $main-nav-font;
+$clr-orange-dark: #BF7400;
+$clr-orange-light: #F1D7AD;
+$clr-gray: $main-nav-bg;
+$clr-gray-light: $sub-nav-active-bg;
+$clr-red: #FF7474;
+$clr-green: #5CD65C;
+$clr-blue: #7495BE;
+
+$settings-color: #aeaeae;
+$settings-more-btn-color: #ffffff;
+$settings-more-txt-color: #D7D7D7;
+$settings-more-opt-bg: #333333;
+$settings-more-opt-color: #868686;
+$settings-more-opt-active-bg: #000000;
+
+/* button color variables */
+$blue-button: #14b0df;
+
+// Global Declartions 
+	/*   Header Right align -start  */
+    @font-face {
+        font-family: myFont;
+        src: url(fonts/RawengulkSans-094.ttf);
+    }
+        /*   Header Right align -end  */
+    $primarycolor: #bec70f;
+    $secondarycolor: #29a2c6;
+    $graycolor: #666666;
+    $bordercolor: #cccccc;
+    $titletextcolor: #646464;
+    //$fontfamily: Arial, Verdana, sans-serif;
+    //$fontfamily: Tahoma;
+    $fontfamily: 'Open Sans', sans-serif;
+    $buttontextcolor: #333333;
+    $buttoncolor: #D98C15;
+    
+    html, body{
+        height: 100%;
+    }
+    
+    body{
+        /* font-family: $fontfamily !important; */
+        font-family: 'Open Sans', sans-serif;
+        -ms-overflow-style: scrollbar;
+    }
+    
+    /* Device Mgmt */
+    
+    $font-color:#444444;
+    
+    $menu-active-bg:#666666;
+    $sub-menu-wrap-bg:#eeeeee;
+    $wrapper-header-bg:#dddddd;
+    $wrapper-header-color:#6C6A6A;
+    $wrapper-border-color:#cccccc;
+    
+        @mixin border-radius($radius) {
+          -webkit-border-radius: $radius;
+             -moz-border-radius: $radius;
+              -ms-border-radius: $radius;
+                  border-radius: $radius;
+        }
+        @mixin box-shadow($login-shadow) {
+            -webkit-box-shadow: $login-shadow;
+               -moz-box-shadow: $login-shadow;
+                -ms-box-shadow: $login-shadow;
+                    box-shadow: $login-shadow;
+        }
+    
+        /* Login */
+        
+        .logo{
+            background-image: url('images/login_logo.png');
+            background-repeat: no-repeat;
+            background-size: 35% 20%;
+            background-position: 185px 10px;
+            
+        }
+        .login-view{
+            /*Centre the login screen*/
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin: 0;
+            display: table;
+            max-width:100%;
+        }
+        .login-content{
+            padding: 0;
+            vertical-align: middle;
+            display: table-cell;
+            margin: 0;
+        }
+        .login-wrap{
+            @extend .logo;
+            width: 320px;
+            max-width: 370px;
+            min-height: 370px;
+            margin: 0 auto;
+            padding: 22px;
+            @include border-radius(6px);
+            border: 10px;
+            @include box-shadow(2px 2px 2px 3px rgba(42,42,42,0.7));
+        .login-title{
+            color:$titletextcolor;
+            font-family: $fontfamily;
+            font-size: 180%;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 40px;
+            margin-top: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            margin-top: 88px;
+        }
+        .keeplogin{
+            font-family: $fontfamily;
+            display: inline-block;
+            font-size: 10px;
+            color: #aaaaaa;	
+                
+        }
+        .keeplogin input#loginkeeping{
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }			
+        .forgot-password{
+            font-family: $fontfamily;
+            margin-bottom: 3px;
+            font-size: 13px;
+            font-style: bold;
+            a:hover{
+                //color: #000000;
+                text-decoration: underline;
+            }
+        }
+        .login-btn{
+            background: $buttoncolor !important;
+            color: $buttontextcolor !important;
+            @include border-radius(3px);
+        }
+        }
+        .login-footer{
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0px;
+            margin: auto;
+            padding-right: 15px;
+        }
+    
+   
+    .sub-holder{
+        margin-top: 55px;
+        float: left;
+        width:100%;
+    }
+    
+    // no of rows per page 
+    .ng-table-counts{
+        display:none;
+    }
+    
+    /* modal window */
+    /**
+    .modal{
+        top: 70px !important;
+    }**/
+    .modal{
+        //z-index:2001 !important;
+    }
+    
+    .modal-dialog{
+        margin-top:10%;
+        .modal-title{
+            width: 540px;
+            display: inline-block;
+        }
+        .close-icon{
+            float: right;
+            font-size: 20px;
+            color:#8B8989;
+            cursor: pointer;
+    
+            &:hover {
+                text-decoration: none;
+            }
+        }
+        
+        .modal-body{
+    
+            min-height:200px;
+            
+            .node-details-content{
+                background: #F5F5F5;
+                
+                .details-items{
+                    border-bottom: solid 1px #E5E5E5;
+                    padding: 3px;
+                }
+            }
+        
+            .node-detail-loader-wrapper{
+                height:200px;
+            }
+    
+            .add-node-fields{
+                margin:15px 0px;
+            }
+    
+            .profile-form{
+                width: 100%;
+                float: left;
+                padding-bottom: 10px;
+    
+                label{
+                    line-height: 30px;
+                }
+    
+                .profile-list{
+                    width:25%;
+                    float: left;
+                    margin-left: 15px;
+                }
+    
+                .device-form-action{
+                    float: right;
+                }
+            }
+    
+            .tab-content{
+                min-height: 350px;
+                height:350px;
+                overflow-y: scroll;
+                
+                .tab-pane{
+                    height:100%;
+                }
+            }
+            .section-label{
+                display: block;
+                width:100%;
+                /* background: $wrapper-header-bg; */
+                background:#989898;
+                color: #000000;
+                padding: 5px;
+                margin-top: 5px;
+            }
+    
+            /* .odd-row{
+                background: #F5F5F5;
+            }
+    
+            .even-row{
+                background: #EFEFEF;
+            } */
+    
+            .section-key, .section-value{
+                display: -webkit-inline-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                width:45%;
+                padding: 2px 5px;
+                vertical-align: middle;
+            }
+        }
+        .modal-body-min {
+            min-height: 150px;
+            height: 150px;
+            overflow: auto;
+            overflow-x: hidden;
+        }
+    }
+    
+    /* common style overrides */
+    .tooltip {
+        word-wrap:break-word;
+    }
+    .toggle-switch {
+        width: 100%;
+        border-color: #ccc;
+    }
+    .toggle-switch .switch-left {
+        background: $clr-orange;
+        color: $clr-gray;
+    }
+    .device-management .table > tbody > tr > td.action-column {
+        padding-right: 0px;
+    }
+    .angular-google-map-container { height: 400px; }
+    .container, .container-fluid {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .pagination {
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+    .row {
+        margin-right: -10px;
+        margin-left: -10px;
+        position: relative;
+        top: 0px;
+    }
+    .btn {
+        padding-top: 4px;
+        padding-bottom: 4px;
+    
+        .caret {
+            margin-top: -1px;
+        }
+    }
+    .table {
+        margin-bottom: 0;
+    }
+    .table-footer {
+        margin: 10px 0;
+    
+        .pager-options {
+            padding: 5px 2px;
+            
+            div .pages-btn {
+                float: right;	
+            }
+        }
+    }
+    .datepicker .form-control {
+        padding-top: 4px;
+        padding-bottom: 4px;
+        height: 30px;
+    }
+    .max-width-180 {
+        max-width: 180px;
+    }
+    
+    /* data table padding
+    .table > thead > tr > th {
+        padding-top: 5px;
+        padding-bottom: 2px;
+    }
+    .table > tbody > tr > td {
+        padding-top: 4px;
+        padding-bottom: 3px;
+    }
+    */
+    /* --- Common New Styles --- */
+    .z-index-1{
+        z-index:1;
+    }
+    .z-index-0{
+        z-index: 0
+    }
+    .footer{
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        height: 35px;
+    }
+
+@import "./assets/common.scss";
+@import "./assets/nav.scss";
+@import '../../../../node_modules/angular-tree-component/dist/angular-tree-component.css';
+@import '../../../../node_modules/bootstrap/dist/css/bootstrap.min.css';

@@ -4,9 +4,13 @@
 /dist
 /tmp
 /out-tsc
+/compiled
+/.awcache
+/target
 
 # dependencies
 /node_modules
+/node
 
 # IDEs and editors
 /.idea
