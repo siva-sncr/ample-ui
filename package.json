@@ -1,14 +1,19 @@
 {
-  "name": "ample-manage",
+  "name": "ample-ui",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "webpack-dev-server --port=4200",
-    "build": "webpack",
+    "start": "ng serve",
+    "build": "ng build",
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e",
+    "wp_start": "webpack-dev-server --port=4200",
+    "wp_build": "webpack",
     "prod": "ng build --prod --aot",
-    "lint": "tslint \"src/**/*.ts\"",
-    "test": "karma start ./karma.conf.js",
+    "wp_lint": "tslint \"src/**/*.ts\"",
+    "wp_test": "karma start ./karma.conf.js",
     "rimraf": "rimraf",
     "clean:dist": "npm run rimraf -- dist",
     "clean:aot": "npm run rimraf -- compiled",
@@ -18,7 +23,7 @@
     "build:dev": "npm run clean:dist && webpack --config config/webpack.dev.js --progress",
     "build:prod": "npm run clean:dist && npm run clean:aot && cross-env BUILD_AOT=1 webpack --config config/webpack.prod.js",
     "pree2e": "webdriver-manager update --standalone false --gecko false --quiet",
-    "e2e": "protractor ./protractor.conf.js"
+    "wp_e2e": "protractor ./protractor.conf.js"
   },
   "private": true,
   "dependencies": {
