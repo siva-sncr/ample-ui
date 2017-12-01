@@ -25,7 +25,7 @@ waveformTimeScaleInterval: 60
 
 #rest api configuration 
 restapi:
-    host: 172.20.3.66
+    host: 172.20.4.10
     #port: 8080
     protocol: https
     contextPath: em/rest/
