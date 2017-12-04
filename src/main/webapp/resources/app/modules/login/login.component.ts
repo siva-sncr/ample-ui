@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from './service/login.service';
+
+import { Config } from '../../provider/config.provider';
 
 @Component({
   selector: 'login',
@@ -8,12 +11,15 @@ import { Component, OnInit } from '@angular/core';
 export class LoginComponent implements OnInit {
 	
 	admin: object;
+	loginURL: any;
 
-	constructor() { 
+	constructor(private config:Config, private loginService:LoginService) { 
 		this.admin = {
 			username : "",
 			password : ""
 		}
+		this.loginURL = config.getURL('login', 'checkSession', [], true);		
+		
 	}
 
 	ngOnInit() {

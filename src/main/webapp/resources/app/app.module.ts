@@ -12,6 +12,7 @@ import { LoginModule } from './modules/login/login.module';
 import { DevicesModule } from './modules/devices/devices.module';
 import { Config } from './provider/config.provider';
 import { ExtendedService } from './services/extended.service';
+import { LoginService } from './modules/login/service/login.service';
 
 // Additional Packages
 import { TreeModule } from 'angular-tree-component';
@@ -40,7 +41,7 @@ import { TreeviewComponent } from './treeview/treeview.component';
     LoginModule,
     DevicesModule
   ],
-  providers: [Config, ExtendedService],
+  providers: [Config, ExtendedService, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

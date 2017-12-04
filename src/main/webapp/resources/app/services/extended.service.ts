@@ -73,15 +73,25 @@ export class ExtendedService {
 
 		return restURL;
 	}
-	public response;
 
 	/**
-				Make an api request POST
-				@method request
-				@param viewName {String} relative path of view html
-				**/
+		Make an api request POST
+		@method request
+		@param viewName {String} relative path of view html
+	**/
 	public requestPOST(url, params, reqConfig) {
 		return this.http.post(url, params)
 		.map(res => res.json());
 	}
+
+	/**
+		Make an api request GET
+		@method request
+		@param viewName {String} relative path of view html
+	**/
+	public requestGET(url) {
+		return this.http.get(url)
+		.map(res => res.json());
+	}
+	
 }
