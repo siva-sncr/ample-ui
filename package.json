@@ -40,6 +40,8 @@
     "@types/bootstrap": "^3.3.36",
     "@types/jquery": "^3.2.16",
     "angular-tree-component": "^6.0.0",
+    "angular2-datatable": "^0.6.0",
+    "angular2-multiselect-dropdown": "^2.1.2",
     "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
     "js-yaml": "^3.9.1",
