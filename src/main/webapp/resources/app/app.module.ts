@@ -8,6 +8,7 @@ import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2
 
 import { AppComponent } from './app.component';
 import { AppRouteModule } from './app.route';
+import { LoginModule } from './modules/login/login.module';
 import { DevicesModule } from './modules/devices/devices.module';
 import { Config } from './provider/config.provider';
 import { ExtendedService } from './services/extended.service';
@@ -36,6 +37,7 @@ import { TreeviewComponent } from './treeview/treeview.component';
     DataTableModule,
     AngularMultiSelectModule,
     AppRouteModule,
+    LoginModule,
     DevicesModule
   ],
   providers: [Config, ExtendedService],
