@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Config } from '../provider/config.provider';
-import { Http, RequestOptions, Headers } from '@angular/http';
+import { Http, RequestOptions, Headers, Response } from '@angular/http';
+import 'rxjs/Rx';
+import { Observable } from 'rxjs';
+
 
 @Injectable()
 export class ExtendedService {
@@ -70,6 +73,7 @@ export class ExtendedService {
 
 		return restURL;
 	}
+	public response;
 
 	/**
 				Make an api request POST
@@ -77,14 +81,7 @@ export class ExtendedService {
 				@param viewName {String} relative path of view html
 				**/
 	public requestPOST(url, params, reqConfig) {
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
-        console.log(url, params);
-		this.http.post(url, params).map(res => {
-			console.log("response", res);
-			return res;
-
-		})
+		return this.http.post(url, params)
+		.map(res => res.json());
 	}
-
 }

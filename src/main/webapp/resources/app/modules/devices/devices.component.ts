@@ -90,8 +90,10 @@ export class DevicesComponent {
 			'deviceTypes' : this.getSelectedList(this.typeDropdown.selectedItems),
 			'searchPattern': this.deviceSearch
 		};
-		var params = {apiType:'SITE'};
-		console.log("api", this.devicesService.getNodeData(params, reqBody));
+		var params = {apiType:'REGION', "ROOTNODE" : {id:1}, REGION : {name:"USA", type:"REGION"}, PAGENO:1, PAGESIZE:10};
+		//this.devicesService.getNodeData(params, reqBody)
+		this.devicesService.getNodeData(params, reqBody)
+		.subscribe(res => console.log("finalData", res));
 	}
 
 	getSelectedList = function(obj) {

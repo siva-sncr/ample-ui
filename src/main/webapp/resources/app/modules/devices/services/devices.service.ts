@@ -8,7 +8,6 @@ export class DevicesService {
 
   getNodeData(params, reqBody) {
     var url = this.extendedService.getURL('deviceManagement', 'data', params, "");
-    console.log(this.extendedService.requestPOST(url, reqBody, "simple"));
     return this.extendedService.requestPOST(url, reqBody, "simple");
   }
 
