@@ -1,0 +1,15 @@
+<div class="navbar navbar-inverse sub-navigation" role="navigation">      
+	<div class="container padding-0">
+	  <div class="">
+		  <div class="row">
+			  <div class="col-xs-12 col-md-12 sub-menu-wrapper padding-0">
+				  <ul class="{{navAlignClass}} nav navbar-nav">
+					  <li *ngFor="let menu of menuItems">
+						<a [routerLink]="[menu.path]">{{ menu.key | translate }}</a>
+					  </li>
+				  </ul>
+			  </div>
+		  </div>
+	  </div>
+	</div>
+</div>

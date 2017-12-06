@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { TranslateModule } from '@ngx-translate/core';
 
+import { UtilityService } from '../../services/utility.service' 
+
 @NgModule({
     imports: [ 
         BrowserModule,
@@ -20,6 +22,7 @@ import { TranslateModule } from '@ngx-translate/core';
         FormsModule,
         HttpModule,
         TranslateModule
-    ]
+    ],
+    providers : [UtilityService]
 })
 export class SharedModule { }

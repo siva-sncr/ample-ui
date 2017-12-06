@@ -14,16 +14,21 @@ import { ExtendedService } from './services/extended.service';
 
 // Additional Packages
 import { TreeModule } from 'angular-tree-component';
-
+import { LineMonitoringModule } from './modules/line.monitoring/line.monitoring.module';
+import { DashboardModule } from './modules/dashboard/dashboard.module';
+import { ReportsModule } from './modules/reports/reports.module';
 // Additional Components
 import { HeaderComponent } from './header/header.component';
+import { SubHeaderComponent } from './sub.header/sub.header.component';
 import { FooterComponent } from './footer/footer.component';
 import { TreeviewComponent } from './treeview/treeview.component';
+import { UtilityService } from './services/utility.service';
 
 
 @NgModule({
   declarations: [
     HeaderComponent,
+    SubHeaderComponent,
     FooterComponent,
     TreeviewComponent,
     AppComponent
@@ -36,9 +41,12 @@ import { TreeviewComponent } from './treeview/treeview.component';
     DataTableModule,
     AngularMultiSelectModule,
     AppRouteModule,
-    DevicesModule
+    DevicesModule,
+    LineMonitoringModule,
+    DashboardModule,
+    ReportsModule
   ],
-  providers: [Config, ExtendedService],
+  providers: [Config, ExtendedService, UtilityService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class ExtendedService {
+	public menuVisible : 'dashboard';
   
   constructor(private http: Http,private _config:Config) { }
 

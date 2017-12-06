@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2-multiselect-dropdown';
 import { Datas } from './data';
 import {DevicesService} from './services/devices.service';
+import {UtilityService} from '../..//services/utility.service';
 @Component({
 	selector: 'devices',
 	templateUrl: './devices.component.html',
@@ -9,8 +10,10 @@ import {DevicesService} from './services/devices.service';
 	providers: [DevicesService]
 })
 export class DevicesComponent {
-	constructor(private devicesService : DevicesService) {
+	constructor(private devicesService : DevicesService, private utilityService : UtilityService) {
+		this.utilityService.setMenu("devices");
 	}
+
 	commonSettings = {
 		singleSelection: false,
 		text: "Select",

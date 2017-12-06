@@ -1,7 +1,9 @@
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, Router, NavigationEnd } from '@angular/router';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+
+import { UtilityService } from './services/utility.service' 
 
 const routes : Routes = [];
 
@@ -9,7 +11,10 @@ const routes : Routes = [];
     imports : [
         RouterModule.forRoot(routes)
     ],
-    exports : [RouterModule]
+    exports : [RouterModule],
+    providers : [UtilityService]
 })
 
-export class AppRouteModule {}
+export class AppRouteModule {
+    
+}
