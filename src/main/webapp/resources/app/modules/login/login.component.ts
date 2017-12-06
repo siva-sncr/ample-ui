@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from './service/login.service';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 
 import { Config } from '../../provider/config.provider';
+import { LoginService } from './service/login.service';
 
 @Component({
   selector: 'login',
@@ -10,22 +11,29 @@ import { Config } from '../../provider/config.provider';
 })
 export class LoginComponent implements OnInit {
 	
-	admin: object;
+	loginform: FormGroup;
 	loginURL: any;
 
-	constructor(private config:Config, private loginService:LoginService) { 
-		this.admin = {
-			username : "",
-			password : ""
-		}
-		this.loginURL = config.getURL('login', 'checkSession', [], true);		
-		
+	constructor(private config:Config, private loginService:LoginService, private fb: FormBuilder) { 
+		this.loginform = fb.group({
+			'username' : [null, [ Validators.required ]],
+			'password' : [null,[ Validators.required ]]
+		  });
+		  
+		this.loginURL = config.getURL('login', 'checkSession', [], true);
+		console.log("this.loginURL ",this.loginURL);
 	}
 
 	ngOnInit() {
 	}
 	
-	checkLogin(admin) {
-		console.log(" admin  ",admin);
+	checkLogin(value) {
+		console.log(" this.loginform  ", value);
+		this.loginService.login(value)
+		.subscribe(
+			res => {
+			  console.log(res);
+			}
+		);
 	}
 }

@@ -4,6 +4,7 @@ import { HttpModule } from '@angular/http';
 import { TranslateModule } from '@ngx-translate/core';
 import {DataTableModule} from "angular2-datatable";
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2-multiselect-dropdown';
+import { FormsModule } from '@angular/forms';
 
 
 import { AppComponent } from './app.component';
@@ -37,6 +38,8 @@ import { TreeviewComponent } from './treeview/treeview.component';
     TranslateModule.forRoot(),
     DataTableModule,
     AngularMultiSelectModule,
+    FormsModule,
+    
     AppRouteModule,
     LoginModule,
     DevicesModule

@@ -11,4 +11,10 @@ export class LoginService {
     return this.extendedService.requestGET(url);
   }
 
+  login(value){
+    var url = this.extendedService.getURL('login', 'checkSession', {}, true);
+    return this.extendedService.requestPOST(url, {j_username:value.username, j_password:value.password}, "");
+  }
+
+
 }

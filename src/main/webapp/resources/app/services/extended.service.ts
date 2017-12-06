@@ -91,7 +91,7 @@ export class ExtendedService {
 	**/
 	public requestGET(url) {
 		return this.http.get(url)
-		.map(res => res.json());
+		.map(res => res).catch(err => err);
 	}
 	
 }

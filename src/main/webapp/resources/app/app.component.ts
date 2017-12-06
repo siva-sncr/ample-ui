@@ -58,18 +58,14 @@ export class AppComponent implements OnInit {
               }
               this.loginService.checkSession().subscribe(
                 res => {
-                  console.log(res);
+                  console.log("res checkSession ",res);
                   // global states checkup
-                  if ((stateName == 'resetPassword') || (stateName == 'forgotPassword')) {
-                    //$state.go(stateName, params);
-                    this.router.navigate([stateName]);                                        
-                  } else {
-                  }
+                  this.router.navigate([stateName]);
                 }, err => {
 //                  console.log(err);
-                  // global states checkup
+                    console.log("err checkSession ",err);
+                    // global states checkup
                   if ((stateName == 'resetPassword') || (stateName == 'forgotPassword')) {
-//                    $state.go(stateName, params);
                     this.router.navigate([stateName]);
                   } else {
                     this.router.navigate(['login']);
