@@ -8,9 +8,11 @@ import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2
 
 import { AppComponent } from './app.component';
 import { AppRouteModule } from './app.route';
+import { LoginModule } from './modules/login/login.module';
 import { DevicesModule } from './modules/devices/devices.module';
 import { Config } from './provider/config.provider';
 import { ExtendedService } from './services/extended.service';
+import { LoginService } from './modules/login/service/login.service';
 
 // Additional Packages
 import { TreeModule } from 'angular-tree-component';
@@ -44,9 +46,10 @@ import { UtilityService } from './services/utility.service';
     DevicesModule,
     LineMonitoringModule,
     DashboardModule,
-    ReportsModule
+    ReportsModule,
+    LoginModule
   ],
-  providers: [Config, ExtendedService, UtilityService],
+  providers: [Config, ExtendedService, UtilityService, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

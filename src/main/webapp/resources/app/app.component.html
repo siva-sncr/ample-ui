@@ -1,13 +1,11 @@
-
-    
-<app-header></app-header>
+<app-header *ngIf="!isTreeCollapsed"></app-header>
 <app-sub-header></app-sub-header>
 <div class="container content-section height-100">
     <div class="row height-100">
-        <div class="col-md-3 treeview height-100">
+        <div class="col-md-3 treeview height-100" *ngIf="!isTreeCollapsed">
             <tree-view></tree-view>
         </div>
-        <div class="col-md-9 height-100">
+        <div class="height-100" [ngClass]="{'col-md-12': isTreeCollapsed, 'col-md-9': !isTreeCollapsed}">
             <router-outlet></router-outlet>
         </div>
     </div>
