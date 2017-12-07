@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LineMonitoringComponent } from './line.monitoring.component';
+import { InactivedevicesComponent } from './inactive-devices.component';
 
-describe('LineMonitoringRouteModule', () => {
-  let component: LineMonitoringComponent;
-  let fixture: ComponentFixture<LineMonitoringComponent>;
+describe('HeaderRouteModule', () => {
+  let component: InactivedevicesComponent;
+  let fixture: ComponentFixture<InactivedevicesComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LineMonitoringComponent ]
+      declarations: [ InactivedevicesComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LineMonitoringComponent);
+    fixture = TestBed.createComponent(InactivedevicesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

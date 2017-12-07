@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 @Component({
 	selector: 'inactivedevices',
-	templateUrl: './inactivedevices.component.html',
-	styleUrls: ['./inactivedevices.component.scss']
+	templateUrl: './inactive-devices.component.html',
+	styleUrls: ['./inactive-devices.component.scss']
 })
 export class InactivedevicesComponent {
 	

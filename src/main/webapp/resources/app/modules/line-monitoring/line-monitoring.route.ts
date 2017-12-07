@@ -2,7 +2,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 
 
-import { LineMonitoringComponent } from './line.monitoring.component';
+import { LineMonitoringComponent } from './line-monitoring.component';
 
 import { EventsComponent } from './components/events/events.component';
 import { DisturbancesComponent } from './components/disturbances/disturbances.component';

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { ReportsComponent } from './reports.component';
 
-import { InactivedevicesComponent } from './components/inactivedevices/inactivedevices.component';
+import { InactivedevicesComponent } from './components/inactive-devices/inactive-devices.component';
 import { Dnp3Component } from './components/dnp3/dnp3.component';
 import { PhaseidComponent } from './components/phaseid/phaseid.component';
 

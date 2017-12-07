@@ -1,7 +1,7 @@
 import { NgModule }  from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
-import { LineMonitoringComponent } from './line.monitoring.component';
-import { LineMonitoringRouteModule } from './line.monitoring.route';
+import { LineMonitoringComponent } from './line-monitoring.component';
+import { LineMonitoringRouteModule } from './line-monitoring.route';
 import { UtilityService } from '../../services/utility.service';
 
 // Sub Components

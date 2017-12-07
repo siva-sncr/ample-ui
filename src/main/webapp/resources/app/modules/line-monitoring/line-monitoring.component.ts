@@ -5,8 +5,8 @@ import { UtilityService } from '../../services/utility.service';
 
 @Component({
 	selector: 'line-monitoring',
-	templateUrl: './line.monitoring.component.html',
-	styleUrls: ['./line.monitoring.component.scss'],
+	templateUrl: './line-monitoring.component.html',
+	styleUrls: ['./line-monitoring.component.scss'],
 	//providers: [UtilityService]
 })
 export class LineMonitoringComponent implements OnInit {
