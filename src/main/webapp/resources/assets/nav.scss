@@ -310,15 +310,17 @@
 				float: none;
 				font-size:13px;
 				margin: 0px auto;
-
-				&.device-management-subnav{
+				&.dashboard-subnav{
+					margin-left:170px;
+				}
+				&.devices-subnav{
 					margin-left:418px;
 				}
 				
-				&.line-monitoring-subnav{
+				&.lineMonitoring-subnav{
 					margin-left: 276px;
 				}
-				&.ample-reports-subnav{
+				&.reports-subnav{
 					margin-left: 326px;
 				}
 			}

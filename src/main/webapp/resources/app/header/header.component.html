@@ -26,10 +26,10 @@
 								</a>
 								<ul class="dropdown-menu" role="menu" dropdown is-close="!togglemenu" is-open="togglemenu">
 									<li>
-										<a href="javscript:"  ui-sref="base.configJobs">{{ 'header.currentjobs.config' | translate }}</a>
+										<a [routerLink]="['current-jobs/device-configuration']">{{ 'header.currentjobs.config' | translate }}</a>
 									</li>
 									<li>
-										<a href="javscript:"  ui-sref="base.upgradeJobs">{{ 'header.currentjobs.upgrade' | translate }}</a>
+										<a [routerLink]="['current-jobs/firmware-upgrade']">{{ 'header.currentjobs.upgrade' | translate }}</a>
 									</li>
 								</ul>
                             </li>

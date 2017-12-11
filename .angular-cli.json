@@ -24,7 +24,8 @@
         "styles.scss"
       ],
       "scripts": [
-        "./assets/highchart/highcharts.js"
+        "resources/jquery-3.2.1.min.js",
+        "../../../../node_modules/bootstrap/dist/js/bootstrap.js"       
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
