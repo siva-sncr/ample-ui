@@ -1,15 +1,15 @@
 <div class="login-view">
     <div class="login-content">
         <div class="login-wrap">
-            <form name="loginform" action="loginURL" method="POST" onsubmit="">
+            <form [formGroup]="loginform" action="loginURL" method="POST" target="_blank" (ngSubmit)="checkLogin(loginform.value)">
                 <div class="form-group" >
                     <h3 class="login-title">{{'application.name' | translate}}</h3>
                     <p>
-                        <input type="text" placeholder="{{'login.form.username' | translate}}" class="form-control" id="j_username" name="j_username" [(ngModel)]="admin.username" required/>
+                        <input type="text" placeholder="{{'login.form.username' | translate}}" class="form-control" id="j_username" name="j_username" formControlName="username"/>
                     </p>
-                    <input type="password"  placeholder="{{'login.form.password' | translate}}" class="form-control" id="j_password" [(ngModel)]="admin.password" name="j_password" required/>
+                    <input type="password"  placeholder="{{'login.form.password' | translate}}" class="form-control" id="j_password" name="j_password" formControlName="password"/>
                 </div>
-                <button class="btn btn-default login-btn" ng-class="{'disabled' : loginform.$invalid}" style="width:100%" type="submit" (click)="checkLogin(admin)"> Login </button>
+                <button class="btn btn-default login-btn" style="width:100%" type="submit" [disabled]="!loginform.valid"> Login </button>
                 <p>{{ msgTxt }}<p>
                 <div class="forgot-password"><a ui-sref="forgotPassword" ui-sref-active="active">{{'login.form.forgotpassword' | translate}}</a></div>
             </form> 
